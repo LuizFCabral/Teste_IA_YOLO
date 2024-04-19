@@ -5,8 +5,8 @@ import cv2
 import cvzone
 
 cap = cv2.VideoCapture(0)
-cap.set(3, 1280)
-cap.set(4,720)
+cap.set(3, 1920)
+cap.set(4,1080)
 
 model = YOLO("../Yolo-Weights/yolov8n.pt")
 
@@ -39,7 +39,7 @@ while True:
             conf = math.ceil((box.conf[0] * 100))/100
 
             cls = int(box.cls[0])
-            cvzone.putTextRect(img, f'{classNames[cls]} {conf}', (max(0, x1), max(35, y1)))
+            cvzone.putTextRect(img, f'{classNames[cls]} {conf}', (max(0, x1), max(35, y1)), scale=2, thickness=1)
 
     cv2.imshow("WebCam",img)
     cv2.waitKey(1)
